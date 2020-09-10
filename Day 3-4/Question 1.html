@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Question 1</title>
+    <style media="screen">
+      img{
+        width: 350px;
+        height: 310px;
+      }
+    </style>
+  </head>
+  <body>
+    <p><pre>Question 1. Create a webpage containing an image and three buttons
+A. On click of the second button a change the existing image to a new image
+B. On click of the third button change it once again
+C. On click of first, the first image should come back
+</pre></p>
+<img src="https://static0.srcdn.com/wordpress/wp-content/uploads/2019/05/Chris-Evans-as-Captain-America-in-the-Quantum-Realm.jpg" id="img1">
+<br>
+<button type="button" name="button" onclick="fun1()">Press here for first image</button>
+<br>
+<br>
+<button type="button" onclick="fun2()" name="button">Press here for second image</button>
+<br>
+<br>
+<button type="button" onclick="fun3()" name="button">Press here for third image</button>
+<script>
+function fun1() {
+  const imgFirst = document.getElementById('img1')
+  const newImg = "https://static0.srcdn.com/wordpress/wp-content/uploads/2019/05/Chris-Evans-as-Captain-America-in-the-Quantum-Realm.jpg";
+  imgFirst.src = newImg;
+}
+function fun2() {
+  const imgFirst = document.getElementById('img1')
+  const newImg = "https://i.insider.com/57bf2e72b6fa0217008b4611?width=1100&format=jpeg&auto=webp";
+  imgFirst.src = newImg;
+}
+function fun3() {
+  const imgFirst = document.getElementById('img1')
+  const newImg = "https://images.theconversation.com/files/120476/original/image-20160428-30950-6acgv9.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop";
+  imgFirst.src = newImg;
+}
+</script>
+
+  </body>
+</html>

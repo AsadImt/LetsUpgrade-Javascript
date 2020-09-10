@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Question 3 and Question 4</title>
+  </head>
+  <body>
+    <p>
+<pre>
+  Question 3.
+      Create an array of objects with objects having the following properties
+    A. {name (string), age (number), country (string), hobbies array (string [ ] ) }
+    B. Write a function to display all the objects on the console.
+
+  Question 4.
+       Following the 3rd question-
+    A. Write a function to display all the objects having age less than 30
+    B. Write a function to display all the objects having country India
+</pre>
+    </p>
+    <p id="js"></p>
+    <script>
+    // Question 3 A.
+      let obj = [{
+        'name' : 'Raul',
+        'age': 22,
+        'country' : 'Mexico',
+        'hobbies' : ['watching movies', 'playing video games']
+      },
+      {
+        'name' : 'Javier',
+        'age': 21,
+        'country' : 'Mexico',
+        'hobbies' : ['reading novels', 'playing video games']
+      },
+      {
+        'name' : 'Sofia',
+        'age': 21,
+        'country' : 'Mexico',
+        'hobbies' : ['reading novels', 'listening to music']
+      },
+      {
+        'name' : 'Abrahm',
+        'age': 31,
+        'country' : 'India',
+        'hobbies' : ['playing video games', 'walking outside']
+      },
+      {
+        'name' : 'Aron',
+        'age': 32,
+        'country' : 'India',
+        'hobbies' : ['reading books', 'wathing movies']
+      }
+    ]
+// Question 3 B.
+    toDisplayObj(obj)
+        function toDisplayObj(details) {
+          console.log(details)
+        }
+
+// Question 4. A
+  ageLessThan30(obj)
+      function ageLessThan30(forAge) {
+      var arr1 = [];
+      for (let i = 0; i < forAge.length; i++) {
+        if (forAge[i]['age'] < 30) {
+          arr1.push(forAge[i])
+        }
+      }
+      console.log(arr1);
+      }
+// Question 4. B
+   countryIndia(obj)
+      function countryIndia(forCountry) {
+      var arr2 = [];
+      for (let j = 0; j < forCountry.length; j++) {
+        if (forCountry[j]['country'] == 'India') {
+          arr2.push(forCountry[j])
+        }
+      }
+      console.log(arr2);
+      }
+    </script>
+
+  </body>
+</html>

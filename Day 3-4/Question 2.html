@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Question 2</title>
+  </head>
+  <body>
+    <p>
+      <pre>
+        Question 2.
+        Create a webpage containing two input fields and a button.
+        A. Write something in the first input
+        B. On click of the button, the content of input one should be copied in the second input
+      </pre>
+    </p>
+    Write here
+    <br>
+    <input type="text" name="entry" id="text" placeholder="Enter name">
+    <br>
+    <br>
+<button type="button" onclick="toObtainText()" name="button">Press here to print name</button>
+<br>
+<br>
+<input type="text" name="obtainedText" id="print" placeholder="Don't write here!">
+<script>
+function toObtainText() {
+  const ele = document.getElementById('text')
+  const ele2 = document.getElementById('print')
+  ele2.value = ele.value;
+}
+</script>
+  </body>
+</html>
