@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ToDo</title>
+    <style media="screen">
+      *{
+        margin : 0px;
+        padding : 0px;
+      }
+      .data{
+        height: 500px;
+        width: 80%;
+        background-color: grey;
+        margin-left: 10%;
+        margin-top: 50px;
+        padding: 20px;
+      }
+      .table{
+        width: 100%;
+        margin-top: 20px;
+      }
+      .title{
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      th,td{
+        height: 40px;
+        font-family: calibri;
+        text-align: center;
+      }
+      input{
+        text-indent: 10px;
+        width: 150px;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <p><pre>Question 2.
+Create a blank array and later on create a add bus functionality bus object contains {name, source,
+destination, number, passenger capacity}
+A. A form to add new bus
+B. Display data in table format
+C. Search by source and destination
+D. Data should be stored permanently in localstorage</pre></p>
+
+
+    <div class="data">
+
+    <h1 class="title"><u>Bus</u></h1>
+
+    <div class="form">
+      <p> <strong>Add new bus</strong> </p>
+      <form onsubmit="toAdd(event)">
+      <input type="text" id="name" name="name" placeholder="Name" required>
+      <input type="text" id="source" name="source" placeholder="Source" required>
+      <input type="text" id="destination" name="destination" placeholder="Destination" required>
+      <input type="number" id="number" name="number" placeholder="Number" required>
+      <input type="number" id="passenger" name="passenger" placeholder="Passenger Capacity" required>
+      <input type="submit" name="submit" value="Submit">
+      <input type="reset" name="reset" value="Reset">
+    </form>
+    </div>
+    <div class="form">
+<p style="font-size: 18px;"><strong>Search option</strong></p>
+      <input type="text" name="search" id="searchsrc" placeholder="Search Source" onkeyup="searchSrc()">
+      <input type="text" name="search" id="searchdest" placeholder="Search Destination" onkeyup="searchDest()">
+
+    </div>
+
+    <div class="form">
+      <p>Delete</p>
+      <input type="number" name="delete" id="delDet" placeholder="Enter Sr. no.">
+      <button type="button" id="del" style="width: 80px;height: 30px;" onclick="deleteNumb()" name="button">Delete</button>
+    </div>
+
+    <table border="1" class="table">
+      <thead>
+      <tr>
+        <th>Sr. No.</th>
+        <th>Name</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Number</th>
+        <th>Passenger Capacity</th>
+      </tr>
+      </thead>
+
+      <tbody class="tdata" id="tdata">
+      </tbody>
+
+        </table>
+
+    </div>
+
+<script>
+window.onload = function () {
+let detailArr =
+[]
+if (localStorage.getItem('detailArr') == null) {
+  let stringArr = JSON.stringify(detailArr)
+  localStorage.setItem('detailArr', stringArr)
+}
+}
+function display(superArr = undefined) {
+    let tabledata = '';
+    let detailArr;
+    if (superArr == undefined) {
+      detailArr = JSON.parse(localStorage.getItem('detailArr'))
+    } else {
+      detailArr = superArr
+    }
+    detailArr.forEach(function(detArr, index) {
+    let currentrow =
+    `<tr>
+    <td>${index + 1}</td>
+    <td>${detArr.name}</td>
+    <td>${detArr.source}</td>
+    <td>${detArr.destination}</td>
+    <td>${detArr.number}</td>
+    <td>${detArr.passenger}</td>
+    </tr>`
+    tabledata += currentrow;
+    });
+    document.getElementById('tdata').innerHTML = tabledata;
+  }
+     display();
+
+   function toAdd(e) {
+      e.preventDefault();
+      let detArr = {};
+      let name = document.getElementById('name').value;
+      let source = document.getElementById('source').value;
+      let destination = document.getElementById('destination').value;
+      let number = document.getElementById('number').value;
+      let passenger = document.getElementById('passenger').value;
+      detArr.name = name;
+      detArr.source = source;
+      detArr.destination = destination;
+      detArr.number = number;
+      detArr.passenger = passenger;
+
+      let detailArr = JSON.parse(localStorage.getItem('detailArr'));
+      detailArr.push(detArr);
+      localStorage.setItem('detailArr', JSON.stringify(detailArr));
+
+      display();
+      document.getElementById('name').value = '';
+      document.getElementById('source').value = '';
+      document.getElementById('destination').value = '';
+      document.getElementById('number').value = '';
+      document.getElementById('passenger').value = '';
+    }
+    function searchSrc() {
+      let word = document.getElementById('searchsrc').value;
+      let detailArr = JSON.parse(localStorage.getItem('detailArr'))
+      let searchValue = detailArr.filter(function(detArr){
+      return detArr.source.toLowerCase().indexOf(word.toLowerCase()) != -1;
+      });
+      display(searchValue);
+    }
+    function searchDest() {
+      let word = document.getElementById('searchdest').value;
+      let detailArr = JSON.parse(localStorage.getItem('detailArr'))
+      let searchValue = detailArr.filter(function(detArr){
+      return detArr.destination.toLowerCase().indexOf(word.toLowerCase()) != -1;
+      });
+      display(searchValue);
+  }
+  function deleteNumb() {
+    let detailArr = JSON.parse(localStorage.getItem('detailArr'));
+    let delWord = document.getElementById('delDet').value;
+    detailArr.splice(delWord - 1, 1);
+    localStorage.setItem('detailArr', JSON.stringify(detailArr))
+    display();
+    document.getElementById('delDet').value = "";
+  }
+
+</script>
+
+  </body>
+</html>

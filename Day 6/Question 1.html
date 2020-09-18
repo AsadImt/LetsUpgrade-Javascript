@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>QUESTION 1</title>
+    <style media="screen">
+      .data{
+        width: 80%;
+        height: 250px;
+      }
+      .form{
+        margin: 10px;
+        padding: 10px;
+      }
+      .tble{
+        margin-left: 10%;
+      }
+      th,td{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <p><pre>Question 1
+Create a array containing five objects with properties { name, age , city , salary }
+A. Display all the objects in a table
+B. Create a search functionality for name and city
+C. Delete button to delete records
+D. Data is not permanent</pre></p>
+ <div class="form">
+   <h1 style="text-align: center">Some Details</h1>
+   <input type="text" name="nameSearch" onkeyup="searchName()" placeholder="Search by name" id="searchName">
+   <br>
+   <br>
+   <input type="text" onkeyup="searchCity()" name="citySearch" placeholder="Search by city" id="searchCity">
+ </div>
+
+ <div class="tableBox">
+<table border="1" class="data">
+  <thead>
+<tr>
+  <th>Sr. No.</th>
+  <th>Name</th>
+  <th>Age</th>
+  <th>City</th>
+  <th>Salary</th>
+  <th>Actions</th>
+</tr>
+ </thead>
+   <tbody id="details">
+   </tbody>
+ </table>
+</div>
+<script>
+let arr = [{
+  'name': 'Sofia',
+  'age' : 22,
+  'city': 'Mexico',
+  'salary' : '40000$'
+},{
+  'name': 'Javier',
+  'age' : 22,
+  'city': 'Mexico',
+  'salary' : '25000$'
+},{
+  'name': 'Raul',
+  'age' : 23,
+  'city': 'Nairobi',
+  'salary' : '30000$'
+},{
+  'name': 'Pablo',
+  'age' : 21,
+  'city': 'Berlin',
+  'salary' : '10000$'
+},{
+  'name': 'Isabela',
+  'age' : 21,
+  'city': 'Moscow',
+  'salary' : '15000$'
+}]
+function showEntries(superArray) {
+  let tableData = ''
+  superArray.forEach(function(det, index) {
+    let currentRow =
+    `<tr>
+    <td>${index + 1}</td>
+    <td>${det.name}</td>
+    <td>${det.age}</td>
+    <td>${det.city}</td>
+    <td>${det.salary}</td>
+    <td><button onclick= "delRow(${index})">Delete</button></td>
+    </tr>`
+    tableData += currentRow;
+  });
+ document.getElementById('details').innerHTML = tableData;
+}
+showEntries(arr);
+function delRow(index) {
+  arr.splice(index, 1)
+  showEntries(arr)
+}
+function searchName() {
+  let sName = document.getElementById('searchName').value;
+  let searchNameValue = arr.filter(function(filt){ return filt.name.toLowerCase().indexOf(sName.toLowerCase()) != -1
+  });
+  showEntries(searchNameValue)
+}
+function searchCity() {
+  let sCity = document.getElementById('searchCity').value;
+  let searchCityValue = arr.filter(function(filt){ return filt.city.toLowerCase().indexOf(sCity.toLowerCase()) != -1
+  });
+  showEntries(searchCityValue);
+}
+
+</script>
+
+  </body>
+</html>
